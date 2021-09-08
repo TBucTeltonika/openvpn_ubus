@@ -1,0 +1,9 @@
+#!/bin/sh /etc/rc.common
+
+USE_PROCD=1
+
+start_service() {
+	        procd_open_instance "ovpn.$1"
+	        procd_set_param command /usr/bin/ubus_openvpn "$1" "$2"
+        	procd_close_instance
+}
